@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Infografía Oscura: Regresión Lineal para IMC</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    margin: 0; padding: 20px;
+    color: #e0e0e0;
+  }
+  h1 {
+    text-align: center;
+    color: #81d4fa;
+    margin-bottom: 30px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #1e1e1e;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+  }
+  .step {
+    margin-bottom: 30px;
+    padding-left: 15px;
+    border-left: 5px solid #29b6f6;
+  }
+  .step h2 {
+    color: #29b6f6;
+    margin-bottom: 8px;
+  }
+  pre {
+    background: #263238;
+    padding: 12px 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.95rem;
+    color: #80deea;
+    margin-top: 10px;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: 8px;
+    color: #cfd8dc;
+  }
+  code {
+    background: #455a64;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 600;
+    color: #b2ebf2;
+  }
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: #607d8b;
+  }
+  @media (max-width:600px) {
+    body {
+      padding: 15px 10px;
+    }
+    .container {
+      padding: 20px 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Infografía: Regresión Lineal para Predecir IMC</h1>
+
+  <div class="step">
+    <h2>1. Importar librerías esenciales</h2>
+    <p>Se importan <code>numpy</code> para manipulación numérica y <code>LinearRegression</code> de <code>sklearn</code> para crear el modelo.</p>
+    <pre>import numpy as np
+from sklearn.linear_model import LinearRegression</pre>
+  </div>
+
+  <div class="step">
+    <h2>2. Generar datos aleatorios</h2>
+    <p>Se generan <code>n = 100</code> muestras de alturas y pesos aleatorios dentro de rangos realistas:</p>
+    <pre>n = 100
+alturas = np.random.uniform(1.5, 2.0, n)  # alturas en metros
+pesos = np.random.uniform(50, 100, n)     # pesos en kilogramos</pre>
+  </div>
+
+  <div class="step">
+    <h2>3. Calcular el IMC real</h2>
+    <p>El IMC para cada muestra se calcula con la fórmula tradicional:</p>
+    <pre>imc_real = pesos / (alturas ** 2)</pre>
+  </div>
+
+  <div class="step">
+    <h2>4. Preparar datos para el modelo</h2>
+    <p>Se juntan los pesos y alturas como variables independientes (features) <code>X</code> y el IMC real como variable objetivo <code>y</code>:</p>
+    <pre>X = np.column_stack((pesos, alturas))
+y = imc_real</pre>
+  </div>
+
+  <div class="step">
+    <h2>5. Crear y entrenar el modelo de regresión lineal</h2>
+    <p>Se instancia el modelo y se entrena con los datos generados:</p>
+    <pre>modelo = LinearRegression()
+modelo.fit(X, y)</pre>
+  </div>
+
+  <div class="step">
+    <h2>6. Predecir IMC para nuevos datos</h2>
+    <p>Se generan nuevos valores aleatorios para peso y altura, y se predice el IMC usando el modelo entrenado:</p>
+    <pre>peso_nuevo = np.random.uniform(50, 100)
+altura_nueva = np.random.uniform(1.5, 2.0)
+X_nuevo = np.array([[peso_nuevo, altura_nueva]])
+imc_predicho = modelo.predict(X_nuevo)[0]</pre>
+  </div>
+
+  <div class="step">
+    <h2>7. Mostrar resultados</h2>
+    <p>Se imprimen los valores nuevos de peso y altura, el IMC calculado con fórmula y el IMC predicho por el modelo:</p>
+    <pre>print(f"Datos nuevos -> Peso: {peso_nuevo:.2f} kg, Altura: {altura_nueva:.2f} m")
+print(f"IMC real calculado: {peso_nuevo / altura_nueva**2:.2f}")
+print(f"IMC predicho por modelo regresión lineal: {imc_predicho:.2f}")</pre>
+  </div>
+
+  <div class="step">
+    <h2>Resumen</h2>
+    <p>
+      Este código ilustra cómo crear datos sintéticos para peso y altura, calcular el IMC real, y luego usar un modelo de regresión lineal para aprender la relación y predecir el IMC basado en nuevas entradas. Es un buen ejercicio para practicar aprendizaje supervisado y entender regresión lineal.
+    </p>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 - Infografía generada por ChatGPT
+</footer>
+
+</body>
+</html>
